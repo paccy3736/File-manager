@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #3A57E8;
+  --color-info: #08B1BA;
+  --color-background: #F0F2F5;
+  --color-card: #FFFFFF;
+  --color-border: #E5E7EB;
+  --color-sidebar-bg: #FFFFFF;
+  --color-text: #232D42;
+  --color-text-muted: #8A92A6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 9999px; }
+
+/* Sidebar — desktop always visible, mobile slides in as overlay */
+.sidebar-desktop { display: none !important; }
+
+@media (min-width: 1024px) {
+  .sidebar-desktop { display: flex !important; flex-direction: column; }
+  .sidebar-mobile, .sidebar-backdrop { display: none !important; }
+}
+
+/* Images grid — 1 col mobile / 2 col tablet / 4 col desktop */
+.all-images-grid { grid-template-columns: 1fr; }
+
+@media (min-width: 640px)  { .all-images-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .all-images-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.hamburger-btn { display: flex; }
+@media (min-width: 1024px) { .hamburger-btn { display: none !important; } }
+
+.profile-name { display: none; }
+@media (min-width: 480px) { .profile-name { display: inline; } }
+
+.navbar-search { flex: 1; max-width: 400px; }
+@media (max-width: 479px) { .navbar-search { display: none; } }
+
+.page-header-actions { display: flex; align-items: center; gap: 10px; }
+@media (max-width: 479px) {
+  .page-header-actions { width: 100%; flex-wrap: wrap; }
+  .page-header-actions > * { flex: 1; min-width: 0; }
+}
+
+.main-content-area { flex: 1; padding: 16px; background-color: var(--color-background); }
+@media (min-width: 640px) { .main-content-area { padding: 24px; } }
+
+.recent-card-wrapper { min-width: 200px; max-width: 200px; flex-shrink: 0; }
+@media (max-width: 479px) { .recent-card-wrapper { min-width: 160px; max-width: 160px; } }
+
+/* Modal — centered dialog on tablet+, bottom sheet on mobile */
+.modal-panel {
+  background-color: var(--color-card);
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 639px) {
+  .modal-panel {
+    border-radius: 12px 12px 0 0;
+    max-height: 95vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  .modal-backdrop { align-items: flex-end !important; padding: 0 !important; }
+}
