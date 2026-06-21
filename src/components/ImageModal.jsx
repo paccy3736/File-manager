@@ -147,11 +147,11 @@ export default function ImageModal({ image, onClose }) {
         >
           <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "var(--color-text-muted)" }}>
             <MdCalendarToday size={14} />
-            Created: {image.createdAt}
+            Created on {new Date(image.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
           </span>
           <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "var(--color-text-muted)" }}>
             <MdAccessTime size={14} />
-            Opened {timeAgo(image.lastOpenedAt)}
+            You opened {timeAgo(image.lastOpenedAt)}
           </span>
         </div>
       </div>

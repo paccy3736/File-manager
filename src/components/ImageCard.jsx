@@ -28,10 +28,11 @@ export default function ImageCard({ image, onClick }) {
         border: "1px solid var(--color-border)",
         overflow: "hidden",
         cursor: "pointer",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
         transition: "box-shadow 0.2s",
       }}
       onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 16px rgba(58,87,232,0.12)")}
-      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.06)")}
     >
       <div style={{ height: 160, overflow: "hidden", backgroundColor: "#F3F4F6" }}>
         <img
@@ -56,11 +57,11 @@ export default function ImageCard({ image, onClick }) {
         >
           {name}
         </p>
-        <p style={{ fontSize: 12, color: "var(--color-text-muted)", marginBottom: 2 }}>
-          Created: {createdAt}
+        <p style={{ fontSize: 13, color: "var(--color-text-muted)", marginBottom: 2 }}>
+          Created on {new Date(createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
         </p>
-        <p style={{ fontSize: 12, color: "var(--color-text-muted)" }}>
-          Opened {timeAgo(lastOpenedAt)}
+        <p style={{ fontSize: 13, color: "var(--color-text-muted)" }}>
+          You opened {timeAgo(lastOpenedAt)}
         </p>
       </div>
     </div>
