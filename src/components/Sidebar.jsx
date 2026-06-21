@@ -6,17 +6,26 @@ import {
   MdFolder,
   MdDelete,
   MdFilePresent,
+  MdDashboard,
+  MdLogout,
+  MdHelpOutline,
 } from "react-icons/md";
 
 const navItems = [
   {
+    group: "Main",
+    links: [
+      { label: "Dashboard", path: "/file-manager/dashboard", icon: <MdDashboard size={20} /> },
+    ],
+  },
+  {
     group: "File Manager",
     links: [
-      { label: "Images",    path: "/images",     icon: <MdImage size={20} /> },
-      { label: "Videos",    path: "/videos",     icon: <MdVideoLibrary size={20} /> },
-      { label: "Documents", path: "/documents",  icon: <MdDescription size={20} /> },
-      { label: "All Files", path: "/all-files",  icon: <MdFolder size={20} /> },
-      { label: "Trash",     path: "/trash",      icon: <MdDelete size={20} /> },
+      { label: "Images",    path: "/file-manager/images",    icon: <MdImage size={20} /> },
+      { label: "Videos",    path: "/file-manager/videos",    icon: <MdVideoLibrary size={20} /> },
+      { label: "Documents", path: "/file-manager/documents", icon: <MdDescription size={20} /> },
+      { label: "All Files", path: "/file-manager/all-files", icon: <MdFolder size={20} /> },
+      { label: "Trash",     path: "/file-manager/trash",     icon: <MdDelete size={20} /> },
     ],
   },
 ];
@@ -79,6 +88,7 @@ function SidebarContent({ onClose }) {
                       gap: 12,
                       padding: "10px 12px",
                       borderRadius: 8,
+                      borderLeft: isActive ? `3px solid var(--color-primary)` : "3px solid transparent",
                       textDecoration: "none",
                       fontWeight: isActive ? 600 : 400,
                       fontSize: 14,
@@ -114,6 +124,36 @@ function SidebarContent({ onClose }) {
           </div>
           <p style={{ fontSize: 12, color: "var(--color-text-muted)" }}>5.5 GB of 10 GB used</p>
         </div>
+      </div>
+
+      <div style={{ borderTop: "1px solid var(--color-border)", padding: "12px" }}>
+        {[
+          { label: "Sign Out", icon: <MdLogout size={18} /> },
+          { label: "Help",     icon: <MdHelpOutline size={18} /> },
+        ].map(({ label, icon }) => (
+          <button
+            key={label}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              width: "100%",
+              padding: "10px 12px",
+              borderRadius: 8,
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              fontSize: 14,
+              color: "var(--color-text-muted)",
+              textAlign: "left",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F3F4F6")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+          >
+            {icon}
+            {label}
+          </button>
+        ))}
       </div>
     </div>
   );
