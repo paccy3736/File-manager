@@ -90,7 +90,7 @@ export default function Navbar({ onMenuClick }) {
 
   function handleSearch(e) {
     setSearchQuery(e.target.value);
-    if (location.pathname !== "/images") navigate("/images");
+    if (location.pathname !== "/file-manager/images") navigate("/file-manager/images");
   }
 
   const cartItems = [
