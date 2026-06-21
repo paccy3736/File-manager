@@ -1,6 +1,3 @@
-// Hardcoded placeholder images (Phase 1)
-// Using picsum.photos for real-looking thumbnails
-
 const images = [
   {
     id: 1,
