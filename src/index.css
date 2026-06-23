@@ -1,44 +1,61 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #3A57E8;
-  --color-info: #08B1BA;
-  --color-background: #F0F2F5;
-  --color-card: #FFFFFF;
-  --color-border: #E5E7EB;
-  --color-sidebar-bg: #FFFFFF;
-  --color-text: #232D42;
-  --color-text-muted: #8A92A6;
+  --color-primary:       #3A57E8;
+  --color-primary-light: #EEF2FF;
+  --color-primary-hover: #2E47C7;
+  --color-info:          #08B1BA;
+  --color-background:    #F8F9FA;
+  --color-card:          #FFFFFF;
+  --color-border:        #E9ECEF;
+  --color-sidebar-bg:    #FFFFFF;
+  --color-text:          #1E293B;
+  --color-text-muted:    #8A92A6;
+  --color-success:       #10B981;
+  --color-danger:        #EF4444;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+body.text-size-small  { font-size: 13px; }
+body.text-size-small  h1 { font-size: 1.25rem; }
+body.text-size-small  h2 { font-size: 1rem; }
+body.text-size-small  p  { font-size: 0.75rem; }
+
+body.text-size-medium { font-size: 15px; }
+body.text-size-medium h1 { font-size: 1.5rem; }
+body.text-size-medium h2 { font-size: 1.15rem; }
+body.text-size-medium p  { font-size: 0.875rem; }
+
+body.text-size-large  { font-size: 17px; }
+body.text-size-large  h1 { font-size: 1.75rem; }
+body.text-size-large  h2 { font-size: 1.3rem; }
+body.text-size-large  p  { font-size: 1rem; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  transition: font-size 0.2s ease;
 }
 
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 9999px; }
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
-/* Sidebar — desktop always visible, mobile slides in as overlay */
 .sidebar-desktop { display: none !important; }
-
 @media (min-width: 1024px) {
   .sidebar-desktop { display: flex !important; flex-direction: column; }
   .sidebar-mobile, .sidebar-backdrop { display: none !important; }
 }
 
-/* Images grid — 1 col mobile / 2 col tablet / 4 col desktop */
-.all-images-grid { grid-template-columns: 1fr; }
+.files-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 640px)  { .files-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .files-grid { grid-template-columns: repeat(4, 1fr); } }
 
-@media (min-width: 640px)  { .all-images-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .all-images-grid { grid-template-columns: repeat(4, 1fr); } }
+.folders-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+@media (min-width: 640px) { .folders-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .hamburger-btn { display: flex; }
 @media (min-width: 1024px) { .hamburger-btn { display: none !important; } }
@@ -46,43 +63,88 @@ body {
 .profile-name { display: none; }
 @media (min-width: 480px) { .profile-name { display: inline; } }
 
-.navbar-search { flex: 1; max-width: 400px; }
+.breadcrumb-nav { display: none; }
+@media (min-width: 640px) { .breadcrumb-nav { display: flex; } }
+
+.navbar-search { flex: 1; max-width: 320px; }
 @media (max-width: 479px) { .navbar-search { display: none; } }
 
-.page-header-actions { display: flex; align-items: center; gap: 10px; }
-@media (max-width: 479px) {
+.page-header-actions { display: flex; align-items: center; gap: 12px; }
+@media (max-width: 640px) {
   .page-header-actions { width: 100%; flex-wrap: wrap; }
-  .page-header-actions > * { flex: 1; min-width: 0; }
+  .page-header-actions > * { flex: 1; min-width: 140px; }
 }
 
 .main-content-area { flex: 1; padding: 16px; background-color: var(--color-background); }
-@media (min-width: 640px) { .main-content-area { padding: 24px; } }
+@media (min-width: 640px) { .main-content-area { padding: 28px; } }
 
-.recent-card-wrapper { min-width: 200px; max-width: 200px; flex-shrink: 0; }
-@media (max-width: 479px) { .recent-card-wrapper { min-width: 160px; max-width: 160px; } }
+.recent-card-wrapper { min-width: 240px; max-width: 240px; flex-shrink: 0; }
+@media (max-width: 479px) { .recent-card-wrapper { min-width: 190px; max-width: 190px; } }
 
-/* Modal — centered dialog on tablet+, bottom sheet on mobile */
+.nav-link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  margin: 2px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  position: relative;
+  transition: all 0.2s ease;
+}
+.nav-link-item:hover { background-color: #F1F5F9; color: var(--color-text); }
+.nav-link-item.active { color: var(--color-primary); background-color: var(--color-primary-light); font-weight: 600; }
+.nav-link-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 15%;
+  height: 70%; width: 4px;
+  background-color: var(--color-primary);
+  border-radius: 0 4px 4px 0;
+}
+
 .modal-panel {
   background-color: var(--color-card);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  max-width: 720px;
+  max-width: 760px;
   width: 100%;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+  border: 1px solid var(--color-border);
+  animation: modalEnter 0.25s ease-out;
+}
+@keyframes modalEnter {
+  from { transform: scale(0.96); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
 }
 
 @media (max-width: 639px) {
   .modal-panel {
-    border-radius: 12px 12px 0 0;
+    border-radius: 16px 16px 0 0;
     max-height: 95vh;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     width: 100%;
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .modal-backdrop { align-items: flex-end !important; padding: 0 !important; }
+}
+@keyframes modalSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.hover-card { transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease; }
+.hover-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(58,87,232,0.1); }
+
+.dropdown-menu { animation: dropdownEnter 0.15s ease-out; }
+@keyframes dropdownEnter {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
