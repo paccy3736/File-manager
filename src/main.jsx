@@ -2,12 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import { ImagesProvider } from './context/ImagesContext.jsx'
+import { FilesProvider } from './context/FilesContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ImagesProvider>
+    <FilesProvider>
       <App />
-    </ImagesProvider>
+    </FilesProvider>
   </StrictMode>,
 )
