@@ -11,12 +11,12 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route index element={<Navigate to="/images" replace />} />
-          <Route path="images"    element={<ImagesPage />} />
-          <Route path="videos"    element={<VideosPage />} />
-          <Route path="documents" element={<DocumentsPage />} />
-          <Route path="all-files" element={<AllFilesPage />} />
-          <Route path="trash"     element={<TrashPage />} />
+          <Route index element={<Navigate to="/file-manager/all-files" replace />} />
+          <Route path="file-manager/images"    element={<ImagesPage />} />
+          <Route path="file-manager/videos"    element={<VideosPage />} />
+          <Route path="file-manager/documents" element={<DocumentsPage />} />
+          <Route path="file-manager/all-files" element={<AllFilesPage />} />
+          <Route path="file-manager/trash"     element={<TrashPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

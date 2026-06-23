@@ -9,8 +9,7 @@ export default function AppLayout() {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-
-      <div className="main-content" style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
         <Navbar onMenuClick={() => setSidebarOpen(true)} />
         <main className="main-content-area" style={{ flex: 1 }}>
           <Outlet />
